@@ -10,7 +10,7 @@ type TestValue struct {
 	expected int
 }
 
-const TIMEOUT_CORRECTION = 0.5
+const TIMEOUT_CORRECTION = 1 // 0.5
 
 func TestLargestVariance(t *testing.T) {
 	// local machine performance is greated that leetcode site, dedicated for 138 test, allowing = total timeout / total tasks
@@ -19,7 +19,7 @@ func TestLargestVariance(t *testing.T) {
 	var testData []TestValue
 	testData = append(testData, TestValue{"abc", 0})
 	testData = append(testData, TestValue{"aabbc", 1})
-	testData = append(testData, TestValue{"aabbc", 1})
+	testData = append(testData, TestValue{"ababc", 1})
 	testData = append(testData, TestValue{"hdivbekdpvjfczschxwylgmfntolkvapgwszvilwdurfcvmmyjxqlwdawcjhgsjbxwtwitkqlhsmefcfhzfjinssxmrwtcsshetadjvactftrffpehzbeaqinqrfbevhxdyroasrlbdnonchcvfiwznpyimqtiqiwyetrikecrqdusytmvuzqnmdlosxficmqctidfldapympuianbsqfrbooukppwfopcujikagcdkznkdhfjqzdqlevcjwrucwtbrksddvhisvmytztqfuknvhhgalueojjzeiiqdspqkmuuzamywnkjjbtqgzkkhjihfrzmpqqtrrruveexvsoychipadoifkezvkapodkobqlgctzaqcoqwtewfblsbdyyicnbtnqupytomttxtyohvsvlznabzbpzpnwdblaecoeemdzcfwraoujqcwbkkhknpdjd", 18})
 
 	t.Logf("Total test data sets: %d, timeout %dms", len(testData), TIMEOUT.Microseconds())
@@ -32,9 +32,9 @@ func TestLargestVariance(t *testing.T) {
 		t.Logf("Execution time %dms\n\tInput '%s'", execTime.Microseconds(), testSet.input)
 
 		if execTime > TIMEOUT {
-			t.Errorf("\tTime limit of %dms exceeded (actual %dms), for input '%s'", TIMEOUT.Microseconds(), execTime.Microseconds(), testSet.input)
+			t.Errorf("Time limit of %dms exceeded (actual %dms)", TIMEOUT.Microseconds(), execTime.Microseconds())
 		} else if testSet.expected != actual {
-			t.Errorf("\tGot value '%d', expected '%d'", actual, testSet.expected)
+			t.Errorf("Got value '%d', expected '%d'", actual, testSet.expected)
 		}
 	}
 }
