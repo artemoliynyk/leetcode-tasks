@@ -16,7 +16,7 @@ Want to test it? Odd, but sure, no problem:
 
 ```shell
 git clone <this repo>
-cd task1234
+cd task1234/go
 go test -v
 ```
 
