@@ -2,9 +2,6 @@
 
 ## 1234. Lorem Ipsum
 
-**Language:** 
-Go
-
 **Complexity:** 
 OMG
 

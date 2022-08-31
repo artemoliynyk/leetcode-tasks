@@ -1,8 +1,6 @@
 # Leetcode task 
 
 ##  2272. Substring With Largest Variance
-**Language:** 
-Go
 
 **Complexity:** 
 Hard
