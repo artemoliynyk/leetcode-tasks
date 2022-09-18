@@ -6,10 +6,13 @@
 Easy
 
 **Time limit:**
-?	
+?
 
 **URL:** 
 https://leetcode.com/problems/two-sum/
+
+**Initial solution:**
+Go
 
 ---
 ## Original description (HTML)

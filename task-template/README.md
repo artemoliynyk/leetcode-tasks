@@ -11,6 +11,12 @@ OMG
 **URL:** 
 https://example.com/omg-that-the-task-insane
 
+**Initial solution:**
+Go
+Java
+Python
+C#
+
 ---
 ## Original description (HTML)
 
