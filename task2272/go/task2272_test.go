@@ -2,7 +2,6 @@ package task2272
 
 import (
 	"testing"
-	"time"
 )
 
 type TestValue struct {
