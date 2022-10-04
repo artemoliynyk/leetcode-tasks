@@ -1,74 +1,72 @@
 package task2272
 
-func largestVariance(s string) int {
-	stringLen := len(s)
+import (
+	"fmt"
+	"strings"
+)
 
-	if stringLen < 2 {
-		return 0
-	}
+func uniqString(s string) string {
+	uString := ""
 
-	maxVar := 0;
-
-	for ln := 3; ln <= stringLen; ln++ {
-		for offset := 0; offset < stringLen; offset++ {
-			part := offset + ln
-
-			if part > stringLen {
-				break
-			}
-
-			substr := s[offset : offset+ln]
-
-			max := CalculateLeghts(substr)
-
-			if maxVar < max {
-				maxVar = max
-			}
+	for _, c := range s {
+		if !strings.ContainsRune(uString, c) {
+			uString += string(c)
 		}
 	}
 
-	return maxVar
+	return uString
 }
 
-func CalculateLeghts(s string) (int) {
+func largestVariance(s string) int {
+	var variance int = 0
+	chars := uniqString(s)
 
-	if len(s) < 3 {
+	if len(chars) <= 1 || len(chars) == len(s) {
 		return 0
 	}
 
-	charLens := make(map[string]int)
+	for i1, c1 := range chars {
+		for i2, c2 := range chars {
 
-	for i := 0; i < len(s); i++ {
-		curr := s[i : i+1]
+			if i1 == i2 {
+				continue
+			}
 
-		length, exist := charLens[curr]
+			fmt.Printf("Checking pair: %v, %v\n", string(c1), string(c2))
 
-		if !exist {
-			length = 0
+			val := 0
+			has_c1, skip_c1 := false, false
+			for _, char := range s {
+				modifier := 0
+
+				if char == c1 {
+					has_c1 = true
+
+					modifier = -1
+					
+					// TODO: implement ignore duplicating chars 
+					if skip_c1 {
+						modifier = 0
+					}
+				}
+
+				if char == c2 {
+					modifier = 1
+				}
+
+				val += modifier
+
+				fmt.Printf("\tChar: %v, mod: %v, val: %v (has_c1/skip_c1: %v/%v)\n", string(char), modifier, val, has_c1, skip_c1)
+
+				if has_c1 && variance <= val {
+					variance = val
+				}
+			}
+
+
+			fmt.Printf("Cycle variance: %v\n---------\n", variance)
 		}
-
-		charLens[curr] = length + 1
 	}
 
-	if len(charLens) < 2 {
-		return 0
-	}
-
-	min, max := -1, -1
-
-	for _, val := range charLens {
-		if min < 0 || val < min {
-			min = val
-		}
-
-		if max < 0 || val > max {
-			max = val
-		}
-	}
-
-	if max > min {
-		return max - min
-	}
-
-	return 0
+	return variance
 }
